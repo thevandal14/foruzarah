@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Letter</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Caveat:wght@500;700&family=Redacted+Script:wght@400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* =========================================
+           GAYA DASAR & LATAR BELAKANG
+           ========================================= */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #121212; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+        }
+
+        .stars-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                radial-gradient(1px 1px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 40px 70px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 90px 40px, #ffffff, rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 200px 200px;
+            opacity: 0.3;
+            z-index: 0;
+            animation: twinkle 5s infinite linear;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        /* =========================================
+           GAYA KERTAS BERGARIS
+           ========================================= */
+        .paper-container {
+            position: relative;
+            width: 90%;
+            max-width: 600px;
+            height: 80vh;
+            background-color: #fdfbf7; 
+            border-radius: 8px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(0,0,0,0.05);
+            z-index: 10;
+            overflow: hidden;
+            
+            background-image: 
+                linear-gradient(90deg, transparent 68px, #ff8c8c 68px, #ff8c8c 70px, transparent 70px),
+                linear-gradient(#e1eafd 1px, transparent 1px);
+            background-size: 100% 100%, 100% 35px; 
+            
+            transform: translateY(50px);
+            opacity: 0;
+            animation: slideUpFade 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        @keyframes slideUpFade {
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* =========================================
+           GAYA TEKS SURAT & EFEK KETIKAN
+           ========================================= */
+        .letter-content {
+            padding-top: 35px; 
+            padding-left: 90px; 
+            padding-right: 30px;
+            padding-bottom: 70px; /* Jarak bawah ditambah agar tidak tertutup tombol */
+            height: 100%;
+            box-sizing: border-box;
+            overflow-y: auto; 
+            
+            font-size: 26px;
+            color: #2c3e50; 
+            line-height: 35px; 
+            letter-spacing: 1px;
+        }
+
+        /* Kelas untuk teks yang bisa dibaca */
+        .normal-text {
+            font-family: 'Caveat', cursive;
+            transition: all 0.3s ease;
+        }
+
+        /* Kelas untuk teks coretan (abstrak) */
+        .scribble-text {
+            font-family: 'Redacted Script', cursive;
+            color: #1a252f; 
+            letter-spacing: 2px;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .letter-content::-webkit-scrollbar { width: 6px; }
+        .letter-content::-webkit-scrollbar-thumb { background-color: rgba(0,0,0,0.2); border-radius: 10px; }
+
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            height: 24px;
+            background-color: #2c3e50;
+            vertical-align: middle;
+            animation: blink 0.8s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* =========================================
+           TOMBOL GANTI FONT (DI POJOK KERTAS)
+           ========================================= */
+        .font-toggle-btn {
+            position: absolute;
+            bottom: 20px;
+            right: 25px;
+            background: rgba(57, 198, 214, 0.15);
+            border: 1px solid #39c6d6;
+            color: #2c3e50;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+            z-index: 100;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            backdrop-filter: blur(2px);
+        }
+
+        .font-toggle-btn:hover {
+            background: #39c6d6;
+            color: #fff;
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(57, 198, 214, 0.4);
+        }
+
+        /* =========================================
+           TOMBOL KEMBALI KACA (KIRI ATAS)
+           ========================================= */
+        .back-btn-glass {
+            position: fixed;
+            left: 30px;
+            top: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 1000;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-right: 3px; 
+        }
+
+        .back-btn-glass:hover {
+            transform: scale(1.15);
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* =========================================
+           RESPONSIVITAS UNTUK LAYAR HP
+           ========================================= */
+        @media screen and (max-width: 600px) {
+            .paper-container {
+                width: 95%;
+                height: 85vh;
+                background-image: 
+                    linear-gradient(90deg, transparent 48px, #ff8c8c 48px, #ff8c8c 50px, transparent 50px),
+                    linear-gradient(#e1eafd 1px, transparent 1px);
+            }
+            .letter-content { padding-left: 65px; font-size: 22px; }
+            .normal-text, .scribble-text { font-size: 22px; }
+            .back-btn-glass { top: 15px; left: 15px; width: 40px; height: 40px; font-size: 18px; }
+            .font-toggle-btn { bottom: 15px; right: 15px; font-size: 12px; padding: 6px 12px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="stars-bg"></div>
+
+    <button class="back-btn-glass" onclick="window.location.href='flower.html'">
+        ⬅
+    </button>
+
+    <div class="paper-container">
+        
+        <div class="letter-content">
+            <span id="content-area"></span><span class="cursor" id="cursor"></span>
+        </div>
+        
+        <button class="font-toggle-btn" id="font-btn" onclick="toggleFont()">🪄 Ganti Font</button>
+        
+    </div>
+
+    <script>
+        // =========================================
+        // ISI SURAT BERDASARKAN PARAGRAF
+        // property 'secret' menentukan apakah paragraf ini akan selamanya berupa coretan
+        // =========================================
+        const paragrafSurat = [
+            {
+                text: "Halo...\ selamat bertambah usia bree!!, soryy kalau kirimnya telat, tpi emnag sengaja hehehe",
+                secret: false // Akan bisa dibaca setelah tombol ditekan
+            },
+            {
+                text: "asal-asalan je"
+            },
+            {
+                text: "tidak kudapatpi gojo mungkin karena tidak ketemuka sama itadori, jadi seperti ini saja ndak ada gojonya, nobara juga mungk",
+                secret: false // Akan bisa dibaca setelah tombol ditekan
+            },
+            {
+                text: "i don't event know if you'll ever read this, but if you read it, i hope you have a wonderful birthday filled with joy and laughter. may this year bring you countless blessings and unforgettable moments. happy birthday once again, and may all your dreams come true! dan moga kedepannya bisa langsung ketemu secara langsung yaa, hehe",
+                secret: true // Akan TETAP menjadi coretan meskipun tombol ditekan
+            },
+            {
+                text: "\nSelamat Ulang Tahun uzaraa! 🎂✨",
+                secret: false // Akan bisa dibaca setelah tombol ditekan
+            },
+            {
+                text: "from f",
+                secret: false // Akan bisa dibaca setelah tombol ditekan
+            }
+        ];
+        
+        const contentArea = document.getElementById("content-area");
+        const scrollContainer = document.querySelector(".letter-content");
+        
+        let pIndex = 0; 
+        let cIndex = 0; 
+        let currentSpan = null; 
+        let isDecoded = false; // Status apakah surat sudah diterjemahkan atau masih abstrak semua
+        
+        const baseSpeed = 60; 
+
+        // Fungsi untuk mengetik surat
+        function typeWriter() {
+            if (pIndex < paragrafSurat.length) {
+                
+                // Jika ini karakter pertama di paragraf baru, buat span/wadah baru
+                if (cIndex === 0) {
+                    currentSpan = document.createElement("span");
+                    currentSpan.id = "para-" + pIndex;
+                    
+                    // Cek status dekode saat membuat elemen paragraf baru
+                    if (isDecoded && !paragrafSurat[pIndex].secret) {
+                        currentSpan.className = "normal-text";
+                    } else {
+                        // Awalnya semua paragraf akan masuk ke kelas scribble (abstrak)
+                        currentSpan.className = "scribble-text";
+                    }
+                    
+                    contentArea.appendChild(currentSpan);
+                }
+
+                const currentText = paragrafSurat[pIndex].text;
+                
+                if (cIndex < currentText.length) {
+                    const char = currentText.charAt(cIndex);
+                    
+                    if (char === '\n') {
+                        currentSpan.innerHTML += "<br>";
+                    } else {
+                        currentSpan.innerHTML += char;
+                    }
+                    
+                    cIndex++;
+                    scrollContainer.scrollTop = scrollContainer.scrollHeight;
+                    
+                    // Atur jeda ketikan agar terlihat natural
+                    let speed = baseSpeed;
+                    if (char === '.' || char === '!') speed = 300;
+                    if (char === ',') speed = 150;
+
+                    setTimeout(typeWriter, speed);
+                } else {
+                    // Paragraf selesai, beri jeda garis baru
+                    contentArea.appendChild(document.createElement("br"));
+                    contentArea.appendChild(document.createElement("br"));
+                    pIndex++;
+                    cIndex = 0;
+                    
+                    setTimeout(typeWriter, 600);
+                }
+            }
+        }
+
+        // =========================================
+        // FUNGSI TOMBOL AJAIB GANTI FONT
+        // =========================================
+        function toggleFont() {
+            isDecoded = !isDecoded; // Balikkan status dari false ke true atau sebaliknya
+            const btn = document.getElementById("font-btn");
+            
+            if (isDecoded) {
+                btn.innerHTML = "🔒 Kembalikan Sandi";
+                btn.style.background = "rgba(255, 77, 77, 0.2)";
+                btn.style.borderColor = "#ff4d4d";
+                btn.style.color = "#ff4d4d";
+            } else {
+                btn.innerHTML = "🪄 Ganti Font";
+                btn.style.background = "rgba(57, 198, 214, 0.15)";
+                btn.style.borderColor = "#39c6d6";
+                btn.style.color = "#2c3e50";
+            }
+
+            // Loop semua paragraf yang sudah dicetak dan ubah font-nya
+            for(let i = 0; i < paragrafSurat.length; i++) {
+                let span = document.getElementById("para-" + i);
+                if (span) {
+                    if (isDecoded && !paragrafSurat[i].secret) {
+                        span.className = "normal-text"; // Berubah jadi bisa dibaca
+                    } else {
+                        span.className = "scribble-text"; // Tetap abstrak
+                    }
+                }
+            }
+        }
+
+        // Mulai animasi 1 detik setelah halaman dimuat
+        setTimeout(typeWriter, 1000);
+
+    </script>
+</body>
+</html>

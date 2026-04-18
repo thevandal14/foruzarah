@@ -4,27 +4,542 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="img/flowers.png" type="image/x-icon">
-    <title>Flowers</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;1,900&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <title>For Uzara - 10 Level Challenges</title>
+
+    <style>
+        /* =========================================
+           GAYA DASAR & ANIMASI BACKGROUND DINAMIS
+           ========================================= */
+        body, html {
+            margin: 0; padding: 0; width: 100%; height: 100%;
+            background: linear-gradient(-45deg, #0b0f19, #1a0b2e, #0f1c2e, #1a0b1a);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+            display: flex; align-items: center; justify-content: center;
+            color: #fff;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .stars-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                radial-gradient(1.5px 1.5px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(1.5px 1.5px at 80px 70px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 150px 140px, #ffddaa, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 250px 90px, #ffffff, rgba(0,0,0,0));
+            background-repeat: repeat; background-size: 300px 300px;
+            opacity: 0.4; z-index: 0;
+            animation: twinkle 6s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.2; transform: translateY(0px); }
+            100% { opacity: 0.6; transform: translateY(-10px); }
+        }
+
+        /* =========================================
+           TEKS FOR UZARA & TAMPILAN DEPAN (TYPEWRITER)
+           ========================================= */
+        #main-ui {
+            z-index: 10; text-align: center; display: flex;
+            flex-direction: column; align-items: center; padding: 20px;
+            animation: fadeInUI 1.5s ease-out;
+        }
+
+        @keyframes fadeInUI {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Font Typewriter & Animasi Cahaya Berjalan */
+        .for-uzara {
+            font-family: 'Courier Prime', monospace;
+            font-size: 4rem; 
+            font-weight: 700;
+            margin: 0 0 10px 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            
+            /* Efek Cahaya Menyapu (Lampu Berjalan) */
+            background: linear-gradient(90deg, #222, #222, #a7ffee, #39c6d6, #222, #222);
+            background-size: 300% 100%;
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent;
+            animation: sweepLight 4s linear infinite;
+        }
+
+        @keyframes sweepLight {
+            0% { background-position: 100% 0; }
+            100% { background-position: -100% 0; }
+        }
+
+        /* Efek Lampu Berjalan per Huruf pada HALLO */
+        .greetings {
+            font-family: 'Courier Prime', monospace;
+            font-size: 3rem; 
+            font-weight: 700; 
+            letter-spacing: 8px; 
+            margin-bottom: 10px;
+        }
+
+        .greetings span { 
+            display: inline-block; 
+            color: #333; /* Warna dasar saat lampu mati */
+            text-shadow: none;
+            animation: runningLamp 2.5s infinite;
+        }
+
+        /* Menunda nyala lampu pada setiap huruf agar berjalan dari kiri ke kanan */
+        .greetings span:nth-child(1) { animation-delay: 0.0s; }
+        .greetings span:nth-child(2) { animation-delay: 0.3s; }
+        .greetings span:nth-child(3) { animation-delay: 0.6s; }
+        .greetings span:nth-child(4) { animation-delay: 0.9s; }
+        .greetings span:nth-child(5) { animation-delay: 1.2s; }
+
+        @keyframes runningLamp {
+            0%, 100% { color: #333; text-shadow: none; }
+            10%, 30% { 
+                color: #fff; 
+                text-shadow: 0 0 10px #39c6d6, 0 0 20px #39c6d6, 0 0 40px #a7ffee; 
+            }
+            40% { color: #333; text-shadow: none; }
+        }
+
+        .description { 
+            font-family: 'Courier Prime', monospace;
+            font-size: 1.2rem; 
+            margin-bottom: 30px; 
+            color: #ddd; 
+            letter-spacing: 1px; 
+        }
+
+        .start-btn {
+            background: rgba(57, 198, 214, 0.1); border: 2px solid #39c6d6; color: #fff;
+            padding: 12px 40px; font-size: 1.2rem; font-weight: 600; border-radius: 30px;
+            cursor: pointer; transition: all 0.3s ease; font-family: 'Poppins', sans-serif;
+            backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);
+            box-shadow: 0 0 15px rgba(57, 198, 214, 0.4); margin-bottom: 20px;
+        }
+
+        .start-btn:hover { background: #39c6d6; color: #000; box-shadow: 0 0 30px #39c6d6; transform: scale(1.08); }
+
+        /* =========================================
+           KOTAK COUNTDOWN (HITUNG MUNDUR)
+           ========================================= */
+        .countdown-container {
+            background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 15px 25px; border-radius: 12px; backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .countdown-text { font-size: 0.85rem; color: #bbb; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; }
+        #timer { font-family: 'Courier Prime', monospace; font-size: 1.8rem; font-weight: 900; color: #39c6d6; text-shadow: 0 0 10px rgba(57, 198, 214, 0.6); letter-spacing: 3px; }
+
+        .expired-msg {
+            font-size: 1.5rem; color: #ff4d4d; font-weight: bold; background: rgba(0,0,0,0.8);
+            padding: 20px 40px; border-radius: 15px; border: 1px solid #ff4d4d; box-shadow: 0 0 20px rgba(255, 77, 77, 0.5);
+        }
+
+        /* =========================================
+           GAYA UNTUK MODAL GEMBOK & 10 LEVEL GAME
+           ========================================= */
+        #lock-modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            z-index: 1000; justify-content: center; align-items: center; color: white;
+        }
+
+        .modal-content {
+            background: rgba(15, 15, 15, 0.95); padding: 35px 30px; border-radius: 15px;
+            border: 2px solid #39c6d6; box-shadow: 0 0 20px rgba(57, 198, 214, 0.6); text-align: center;
+            max-width: 450px; width: 85%; animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); position: relative;
+        }
+
+        .level-indicator {
+            position: absolute; top: 15px; right: 20px; font-size: 0.9rem; color: #a7ffee;
+            font-weight: bold; background: rgba(57, 198, 214, 0.2); padding: 5px 10px; border-radius: 20px;
+        }
+
+        .lock-icon { font-size: 50px; margin-bottom: 5px; transition: all 0.5s; }
+        .question { font-size: 1rem; margin-bottom: 20px; line-height: 1.5; }
+        .question strong { color: #a7ffee; font-size: 1.15rem; display: block; margin-top: 8px; }
+
+        .answer-input {
+            width: 85%; padding: 12px; border-radius: 8px; border: 2px solid #555; background: #222;
+            color: white; outline: none; font-size: 1rem; text-align: center; margin-bottom: 15px; transition: 0.3s;
+        }
+        .answer-input:focus { border-color: #39c6d6; box-shadow: 0 0 10px rgba(57, 198, 214, 0.5); }
+
+        .submit-btn {
+            background: #39c6d6; color: #000; border: none; padding: 10px 25px;
+            font-size: 1.05rem; font-weight: bold; border-radius: 8px; cursor: pointer; transition: 0.3s;
+        }
+        .submit-btn:hover { box-shadow: 0 0 20px #39c6d6; background: #fff; transform: scale(1.05); }
+
+        .quiz-options { display: grid; grid-template-columns: 1fr; gap: 8px; margin-bottom: 15px; }
+        .quiz-btn {
+            background: #222; color: white; border: 2px solid #555; padding: 10px;
+            border-radius: 8px; cursor: pointer; font-size: 0.95rem; transition: 0.3s;
+        }
+        .quiz-btn:hover { border-color: #39c6d6; background: rgba(57, 198, 214, 0.2); }
+
+        .memory-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 0 auto 10px auto; max-width: 300px; }
+        .memory-card { width: 100%; aspect-ratio: 1; perspective: 1000px; cursor: pointer; }
+        .memory-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.5s; transform-style: preserve-3d; }
+        .memory-card.flipped .memory-card-inner { transform: rotateY(180deg); }
+        .memory-card-front, .memory-card-back {
+            position: absolute; width: 100%; height: 100%; backface-visibility: hidden; display: flex;
+            align-items: center; justify-content: center; border-radius: 8px; font-size: 2rem; box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        .memory-card-front { background: #222; border: 2px solid #555; color: #888; }
+        .memory-card-back { background: #39c6d6; border: 2px solid #a7ffee; transform: rotateY(180deg); }
+
+        .error-msg { color: #ff4d4d; margin-top: 15px; font-size: 0.95rem; font-weight: 500; display: none; }
+        .game-stage { display: none; animation: fadeIn 0.5s; }
+        .game-stage.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .shake { animation: shake 0.4s; }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-12px); } 50% { transform: translateX(12px); } 75% { transform: translateX(-12px); } }
+
+        /* Responsif HP */
+        @media screen and (max-width: 600px) {
+            .for-uzara { font-size: 3rem; }
+            .greetings { font-size: 2.2rem; }
+            .start-btn { font-size: 1.1rem; padding: 10px 30px; }
+            #timer { font-size: 1.5rem; }
+        }
+    </style>
 </head>
 <body>
-    <div class="greetings">
-    <!-- silahkan menambah kata sesuai keinginan dengan <span>text...</span -->
-        <span>H</span>
-        <span>A</span>
-        <span>L</span>
-        <span>L</span>
-        <span>O</span>
-    </div>
-    <div class="description">
-        <span>Aku ada hadiah spesial buat kamu!!</span>
-    </div>
-    <div class="button">
-        <button>
-            <a href="flower.html">Klik disini</a>
-        </button>
+
+    <div class="stars-bg"></div>
+
+    <div id="main-ui">
+        <h1 class="for-uzara">for uzara</h1>
         
+        <div class="greetings">
+            <span>17</span><span>-</span><span>04</span><span>-</span><span>2004</span>
+        </div>
+        
+        <div class="description">from f</div>
+        <button class="start-btn" onclick="showLock()">open</button>
+
+        <div class="countdown-container">
+            <div class="countdown-text">Waktu tersisa untuk membuka:</div>
+            <div id="timer">--:--:--</div>
+        </div>
     </div>
+
+    <div id="lock-modal">
+        <div class="modal-content" id="modal-box">
+            <div class="level-indicator" id="level-indicator">Level 1/10</div>
+            <div class="lock-icon" id="lock-icon">🔒</div>
+            
+            <div class="game-stage active" id="stage-1">
+                <div class="question">
+                    Mari kita main 10 Level *mini-games* sebelum hadiah terbuka!<br>
+                    <strong>Siapa salah satu karakter anime favoritmu?</strong>
+                </div>
+                <input type="text" id="answer1" class="answer-input" placeholder="misal: naruto, luffy..." autocomplete="off">
+                <br><button class="submit-btn" onclick="checkStage1()">Jawab</button>
+            </div>
+
+            <div class="game-stage" id="stage-2">
+                <div class="question">
+                    Lanjut Ujian Astronomi 🔭:<br>
+                    <strong>Bagaimana asal mula terbentuknya Black Hole?</strong>
+                </div>
+                <div class="quiz-options">
+                    <button class="quiz-btn" onclick="checkStage2('salah')">Tabrakan antar planet besar</button>
+                    <button class="quiz-btn" onclick="checkStage2('benar')">Runtuhnya inti bintang mati yang sangat masif</button>
+                    <button class="quiz-btn" onclick="checkStage2('salah')">Ledakan tumpukan debu luar angkasa</button>
+                </div>
+            </div>
+
+            <div class="game-stage" id="stage-3">
+                <div class="question">
+                    Sekarang uji logika matematika 🧠:<br>
+                    Jika <strong>5 + 3 = 28</strong><br>
+                    Jika <strong>9 + 1 = 810</strong><br>
+                    Maka <strong>5 + 4 = ?</strong>
+                </div>
+                <input type="text" id="answer3" class="answer-input" placeholder="Ketik angka jawabanmu..." autocomplete="off">
+                <br><button class="submit-btn" onclick="checkStage3()">Jawab</button>
+            </div>
+
+            <div class="game-stage" id="stage-4">
+                <div class="question">
+                    Uji fokusmu 🏃‍♂️:<br>
+                    <strong>Jika kamu ikut lomba lari, lalu berhasil menyalip pelari juara dua... Maka sekarang kamu berada di posisi juara berapa?</strong>
+                </div>
+                <div class="quiz-options">
+                    <button class="quiz-btn" onclick="checkStage4('salah')">Juara 1</button>
+                    <button class="quiz-btn" onclick="checkStage4('benar')">Juara 2</button>
+                    <button class="quiz-btn" onclick="checkStage4('salah')">Juara 3</button>
+                </div>
+            </div>
+
+            <div class="game-stage" id="stage-5">
+                <div class="question">
+                    Ujian Logika CPNS Dimulai 📝:<br>
+                    <strong>Saat usiaku 6 tahun, usia adikku adalah setengah dari usiaku. Jika sekarang usiaku 50 tahun, berapakah usia adikku?</strong>
+                </div>
+                <div class="quiz-options">
+                    <button class="quiz-btn" onclick="checkStage5('salah')">25 Tahun</button>
+                    <button class="quiz-btn" onclick="checkStage5('benar')">47 Tahun</button>
+                    <button class="quiz-btn" onclick="checkStage5('salah')">48 Tahun</button>
+                </div>
+            </div>
+
+            <div class="game-stage" id="stage-6">
+                <div class="question">
+                    Kuis Analogi Kata 📖:<br>
+                    <strong>Matahari : Terang = Es : ?</strong>
+                </div>
+                <div class="quiz-options">
+                    <button class="quiz-btn" onclick="checkStage6('salah')">Mencair</button>
+                    <button class="quiz-btn" onclick="checkStage6('benar')">Dingin</button>
+                    <button class="quiz-btn" onclick="checkStage6('salah')">Air</button>
+                </div>
+            </div>
+
+            <div class="game-stage" id="stage-7">
+                <div class="question">
+                    Hati-hati terjebak! Silogisme Logika 🕵️‍♀️:<br>
+                    <strong>Semua bunga di taman ini harum. Beberapa bunga berwarna merah. Kesimpulannya?</strong>
+                </div>
+                <div class="quiz-options">
+                    <button class="quiz-btn" onclick="checkStage7('salah')">Semua bunga merah itu harum</button>
+                    <button class="quiz-btn" onclick="checkStage7('benar')">Beberapa bunga merah itu harum</button>
+                    <button class="quiz-btn" onclick="checkStage7('salah')">Semua bunga harum berwarna merah</button>
+                </div>
+            </div>
+
+            <div class="game-stage" id="stage-8">
+                <div class="question">
+                    Ayo hitung pola deret angka (Fibonacci) ini 🧮:<br>
+                    <strong>1, 1, 2, 3, 5, 8, ?</strong>
+                </div>
+                <input type="text" id="answer8" class="answer-input" placeholder="Ketik angkanya..." autocomplete="off">
+                <br><button class="submit-btn" onclick="checkStage8()">Jawab</button>
+            </div>
+
+            <div class="game-stage" id="stage-9">
+                <div class="question">
+                    Teka-teki waktu ⏰:<br>
+                    <strong>Jika kemarin adalah hari esok dari hari Rabu, hari apakah esok lusa?</strong>
+                </div>
+                <div class="quiz-options">
+                    <button class="quiz-btn" onclick="checkStage9('salah')">Sabtu</button>
+                    <button class="quiz-btn" onclick="checkStage9('benar')">Minggu</button>
+                    <button class="quiz-btn" onclick="checkStage9('salah')">Senin</button>
+                </div>
+            </div>
+
+            <div class="game-stage" id="stage-10">
+                <div class="question">
+                    Level 10 Terakhir! Uji daya ingatmu 🌺.<br>
+                    <strong>Temukan 3 pasang gambar bunga yang sama!</strong>
+                </div>
+                <div class="memory-grid" id="memory-grid"></div>
+            </div>
+            
+            <div class="error-msg" id="error-msg">Tetoooot! Salah! 😜</div>
+        </div>
+    </div>
+
+    <script>
+        // ===============================================
+        // SISTEM HITUNG MUNDUR (COUNTDOWN 24 JAM)
+        // ===============================================
+        let deadline = localStorage.getItem('uzara_deadline');
+        if (!deadline) {
+            deadline = new Date().getTime() + (24 * 60 * 60 * 1000); 
+            localStorage.setItem('uzara_deadline', deadline);
+        }
+
+        const timerInterval = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = deadline - now;
+            
+            if (distance < 0) {
+                clearInterval(timerInterval);
+                document.getElementById('main-ui').innerHTML = `
+                    <div class="expired-msg">
+                        Waktu telah habis. 💔<br>
+                        <span style="font-size:1rem; color:#bbb; font-weight:normal; margin-top:10px; display:block;">
+                        Hadiah ini sudah terkunci selamanya.
+                        </span>
+                    </div>
+                `;
+                return;
+            }
+            
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            const fmtHours = hours < 10 ? "0" + hours : hours;
+            const fmtMins = minutes < 10 ? "0" + minutes : minutes;
+            const fmtSecs = seconds < 10 ? "0" + seconds : seconds;
+
+            document.getElementById("timer").innerHTML = `${fmtHours}:${fmtMins}:${fmtSecs}`;
+        }, 1000);
+
+
+        // ===============================================
+        // LOGIKA MINI-GAMES 10 LEVEL
+        // ===============================================
+        function showLock() {
+            document.getElementById('lock-modal').style.display = 'flex';
+            setTimeout(() => document.getElementById('answer1').focus(), 100);
+        }
+
+        function triggerError() {
+            const modalBox = document.getElementById('modal-box');
+            const errorMsg = document.getElementById('error-msg');
+            errorMsg.style.display = "block";
+            modalBox.classList.remove("shake");
+            void modalBox.offsetWidth; 
+            modalBox.classList.add("shake");
+            setTimeout(() => { errorMsg.style.display = "none"; }, 2000);
+        }
+
+        function nextStage(stageNumber) {
+            document.querySelectorAll('.game-stage').forEach(el => el.classList.remove('active'));
+            document.getElementById('stage-' + stageNumber).classList.add('active');
+            document.getElementById('level-indicator').innerText = `Level ${stageNumber}/10`;
+            document.getElementById('error-msg').style.display = "none";
+            
+            const nextInput = document.getElementById('answer' + stageNumber);
+            if(nextInput) setTimeout(() => nextInput.focus(), 100);
+
+            if(stageNumber === 10) initMemoryGame();
+        }
+
+        function unlockSuccess() {
+            const modalBox = document.getElementById('modal-box');
+            const lockIcon = document.getElementById('lock-icon');
+            
+            document.getElementById('stage-10').innerHTML = `<h2 style="color:#a7ffee">Yeay Kamu Hebat! 🎉</h2><p>10 Gembok terbuka, bersiap untuk kejutanmu...</p>`;
+            lockIcon.innerHTML = "🔓";
+            lockIcon.style.transform = "scale(1.3)";
+            document.getElementById('level-indicator').style.display = "none";
+            modalBox.style.borderColor = "#a7ffee";
+            modalBox.style.boxShadow = "0 0 40px #a7ffee";
+            
+            setTimeout(() => { window.location.href = "flower.html"; }, 2000);
+        }
+
+        // FUNGSI CEK JAWABAN LEVEL 1 - 9
+        function checkStage1() {
+            const ans = document.getElementById('answer1').value.toLowerCase().trim();
+            if (ans === "gojo" || ans === "satoru gojo" || ans === "gojo satoru") nextStage(2); else triggerError();
+        }
+        function checkStage2(status) { if (status === 'benar') nextStage(3); else triggerError(); }
+        function checkStage3() {
+            const ans = document.getElementById('answer3').value.trim();
+            if (ans === "19") nextStage(4); else triggerError();
+        }
+        function checkStage4(status) { if (status === 'benar') nextStage(5); else triggerError(); }
+        function checkStage5(status) { if (status === 'benar') nextStage(6); else triggerError(); }
+        function checkStage6(status) { if (status === 'benar') nextStage(7); else triggerError(); }
+        function checkStage7(status) { if (status === 'benar') nextStage(8); else triggerError(); }
+        function checkStage8() {
+            const ans = document.getElementById('answer8').value.trim();
+            if (ans === "13") nextStage(9); else triggerError(); // Deret Fibonacci: 5+8=13
+        }
+        function checkStage9(status) { if (status === 'benar') nextStage(10); else triggerError(); }
+
+        // --- LEVEL 10: GAME MENCOCOKKAN GAMBAR ---
+        const emojis = ['🌹', '🌹', '🌸', '🌸', '🌻', '🌻']; 
+        let hasFlippedCard = false, lockBoard = false;
+        let firstCard, secondCard, matchedPairs = 0;
+
+        function initMemoryGame() {
+            const grid = document.getElementById('memory-grid');
+            grid.innerHTML = '';
+            matchedPairs = 0;
+            resetBoard();
+            
+            emojis.sort(() => 0.5 - Math.random());
+            
+            emojis.forEach(emoji => {
+                const card = document.createElement('div');
+                card.classList.add('memory-card');
+                card.dataset.emoji = emoji;
+                card.innerHTML = `
+                    <div class="memory-card-inner">
+                        <div class="memory-card-front">❓</div>
+                        <div class="memory-card-back">${emoji}</div>
+                    </div>
+                `;
+                card.addEventListener('click', () => flipCard(card));
+                grid.appendChild(card);
+            });
+        }
+
+        function flipCard(card) {
+            if (lockBoard || card === firstCard) return;
+            card.classList.add('flipped');
+            if (!hasFlippedCard) {
+                hasFlippedCard = true;
+                firstCard = card;
+                return;
+            }
+            secondCard = card;
+            checkForMatch();
+        }
+
+        function checkForMatch() {
+            let isMatch = firstCard.dataset.emoji === secondCard.dataset.emoji;
+            isMatch ? disableCards() : unflipCards();
+        }
+
+        function disableCards() {
+            firstCard.onclick = null; secondCard.onclick = null;
+            matchedPairs++;
+            resetBoard();
+            if (matchedPairs === 3) setTimeout(unlockSuccess, 800);
+        }
+
+        function unflipCards() {
+            lockBoard = true;
+            setTimeout(() => {
+                triggerError();
+                firstCard.classList.remove('flipped');
+                secondCard.classList.remove('flipped');
+                resetBoard();
+            }, 800);
+        }
+
+        function resetBoard() {
+            [hasFlippedCard, lockBoard] = [false, false];
+            [firstCard, secondCard] = [null, null];
+        }
+
+        // Pemicu tombol Enter untuk input teks
+        document.getElementById("answer1").addEventListener("keypress", function(e) {
+            if (e.key === "Enter") { e.preventDefault(); checkStage1(); }
+        });
+        document.getElementById("answer3").addEventListener("keypress", function(e) {
+            if (e.key === "Enter") { e.preventDefault(); checkStage3(); }
+        });
+        document.getElementById("answer8").addEventListener("keypress", function(e) {
+            if (e.key === "Enter") { e.preventDefault(); checkStage8(); }
+        });
+    </script>
 </body>
 </html>

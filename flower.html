@@ -4,14 +4,335 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;1,900&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="css/main.css">
     <link rel="icon" href="img/flowers.png" type="image/x-icon">
-    <title>flowers</title>
+    <title>Special Flowers, Roses, Hearts & Music</title>
+
+    <style>
+        /* =========================================
+           GAYA KHUSUS TEKS (Terang-Redup Perlahan)
+           ========================================= */
+        .text-wrapper {
+            position: absolute;
+            top: 5%; 
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            z-index: 100;
+            font-family: 'Poppins', cursive;
+            color: azure;
+            width: 100%;
+            pointer-events: none;
+        }
+        
+        .greetings {
+            font-size: 4rem; 
+            font-weight: 900;
+            margin-bottom: -10px;
+            animation: slow-glow 4s ease-in-out infinite;
+        }
+        
+        .greetings > span {
+            display: inline-block; 
+        }
+        
+        .description {
+            font-size: 0.9rem; 
+            margin-top: 10px;
+            font-family: 'Poppins', cursive;
+            animation: slow-glow-desc 4s ease-in-out infinite;
+        }
+
+        @keyframes slow-glow {
+            0%, 100% {
+                color: #fff;
+                text-shadow: 0 0 12px #39c6d6, 0 0 40px #39c6d6, 0 0 80px #39c6d6;
+            }
+            50% {
+                color: #555; 
+                text-shadow: 0 0 5px rgba(57, 198, 214, 0.2); 
+            }
+        }
+
+        @keyframes slow-glow-desc {
+            0%, 100% {
+                color: #fff;
+                text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            }
+            50% {
+                color: #888;
+                text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+            }
+        }
+
+        @media screen and (max-width: 574px) {
+            .text-wrapper { top: 8%; }
+            .greetings { font-size: 2.5rem; font-weight: 500; }
+            .description { font-size: 0.1rem; }
+        }
+
+        /* =========================================
+           GAYA KHUSUS MAWAR (GELAP, PENDEK, & RAPI)
+           ========================================= */
+        .flower--rose .flower__leaf {
+            background-color: #8b0000; 
+            background-image: linear-gradient(to top, #330000, #8b0000); 
+            border-radius: 50% 50% 45% 45% / 60% 60% 40% 40%; 
+        }
+        .flower--rose .flower__leafs::after { background-color: #4d0000; }
+        .flower--rose .flower__white-circle {
+            background-color: #1a0000; 
+            box-shadow: 0 0 2vmin #660000;
+        }
+
+        @keyframes moving-rose-left {
+            0%, 100% { transform: scale(0.6) rotate(15deg); }
+            50% { transform: scale(0.6) rotate(10deg); }
+        }
+        @keyframes moving-rose-right {
+            0%, 100% { transform: scale(0.55) rotate(-15deg); }
+            50% { transform: scale(0.55) rotate(-20deg); }
+        }
+
+        .flower--rose-left {
+            left: 35%;
+            bottom: 5vmin; 
+            z-index: 8; 
+            animation: moving-rose-left 4s linear infinite;
+        }
+        .flower--rose-left .flower__line { height: 40vmin; animation-delay: 0.2s; } 
+
+        .flower--rose-right {
+            left: 65%;
+            bottom: 5vmin; 
+            z-index: 8;
+            animation: moving-rose-right 4s linear infinite;
+        }
+        .flower--rose-right .flower__line { height: 35vmin; animation-delay: 0.4s; }
+
+        /* =========================================
+           GAYA KANVAS UNTUK PARTIKEL
+           ========================================= */
+        #particles-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 50; 
+            pointer-events: none; 
+        }
+
+        /* =========================================
+           GAYA TOMBOL MENU MUSIK 
+           ========================================= */
+        .music-menu {
+            position: fixed;
+            right: 30px;
+            bottom: 40px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .menu-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: rgba(20, 117, 122, 0.6); 
+            border: 1px solid rgba(167, 255, 238, 0.5);
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 28px;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(57, 198, 214, 0.4);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 2;
+            transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .menu-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(57, 198, 214, 0.8);
+            background-color: rgba(57, 198, 214, 0.8);
+        }
+
+        .menu-options {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            z-index: 1;
+        }
+
+        .song-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -22.5px; 
+            margin-left: -22.5px;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: rgba(57, 198, 214, 0.4);
+            border: 1px solid rgba(167, 255, 238, 0.5);
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 900;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(57, 198, 214, 0.3);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .song-btn:hover {
+            background-color: rgba(167, 255, 238, 0.9);
+            color: #111;
+            box-shadow: 0 0 20px rgba(167, 255, 238, 0.8);
+        }
+
+        .music-menu.active .song-btn:nth-child(1) { opacity: 1; transform: translateY(-75px) scale(1); }
+        .music-menu.active .song-btn:nth-child(1):hover { transform: translateY(-75px) scale(1.1); }
+        .music-menu.active .song-btn:nth-child(2) { opacity: 1; transform: translateY(-135px) scale(1); }
+        .music-menu.active .song-btn:nth-child(2):hover { transform: translateY(-135px) scale(1.1); }
+        .music-menu.active .song-btn:nth-child(3) { opacity: 1; transform: translateY(-195px) scale(1); }
+        .music-menu.active .song-btn:nth-child(3):hover { transform: translateY(-195px) scale(1.1); }
+
+        /* =========================================
+           GAYA TOMBOL PINDAH HALAMAN (NEXT PAGE)
+           ========================================= */
+        .next-page-btn {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background-color: rgba(57, 198, 214, 0.4);
+            border: 1px solid rgba(167, 255, 238, 0.5);
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 26px;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(57, 198, 214, 0.4);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 1000;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .next-page-btn:hover {
+            transform: translateY(-50%) scale(1.15);
+            background-color: rgba(167, 255, 238, 0.9);
+            color: #111;
+            box-shadow: 0 0 25px rgba(167, 255, 238, 0.8);
+        }
+
+        /* =========================================
+           LAYAR HITAM UNTUK TRANSISI SLIDE
+           ========================================= */
+        .slide-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000; 
+            z-index: 9999; 
+            transform: translateX(100%); 
+            transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+            pointer-events: none;
+        }
+
+        .slide-overlay.active {
+            transform: translateX(0); 
+            pointer-events: all;
+        }
+
+    </style>
 </head>
 <body class="container">
-  <!-- Pembuat code: https://codepen.io/mdusmanansari/pen/BamepLe -->
+    
+    <div class="slide-overlay" id="slide-overlay"></div>
+
+    <audio id="bg-music" loop>
+        <source src="music/default.mp3" type="audio/mpeg">
+    </audio>
+
     <div class="night"></div>
+
+    <canvas id="particles-canvas"></canvas>
+
+    <div class="text-wrapper">
+        <div class="greetings">
+            <span>H</span>
+            <span>A</span>
+            <span>P</span>
+            <span>P</span>
+            <span>Y</span>
+            <span> </span>
+            <span>B</span>  
+            <span>I</span>
+            <span>R</span>
+            <span>T</span>
+            <span>H</span>
+            <span>D</span>
+            <span>A</span>
+            <span>Y</span>
+        </div>
+
+    </div>
+
+    <button class="next-page-btn" onclick="slideAndRedirect('partikel.html')">
+        ➜
+    </button>
+
+    <div class="music-menu">
+        <button class="menu-btn" id="menu-btn">🎵</button>
+        <div class="menu-options">
+            <button class="song-btn" onclick="playSong('music/1.mp3')">1</button>
+            <button class="song-btn" onclick="playSong('music/2.mp3')">2</button>
+            <button class="song-btn" onclick="playSong('music/3.mp3')">3</button>
+        </div>
+    </div>
+
     <div class="flowers">
+      
+      <div class="flower flower--rose flower--rose-left">
+        <div class="flower__leafs">
+          <div class="flower__leaf flower__leaf--1"></div>
+          <div class="flower__leaf flower__leaf--2"></div>
+          <div class="flower__leaf flower__leaf--3"></div>
+          <div class="flower__leaf flower__leaf--4"></div>
+          <div class="flower__white-circle"></div>
+          <div class="flower__light flower__light--1"></div>
+          <div class="flower__light flower__light--2"></div>
+          <div class="flower__light flower__light--3"></div>
+          <div class="flower__light flower__light--4"></div>
+        </div>
+        <div class="flower__line">
+          <div class="flower__line__leaf flower__line__leaf--1"></div>
+          <div class="flower__line__leaf flower__line__leaf--2"></div>
+        </div>
+      </div>
+
       <div class="flower flower--1">
         <div class="flower__leafs flower__leafs--1">
           <div class="flower__leaf flower__leaf--1"></div>
@@ -19,7 +340,6 @@
           <div class="flower__leaf flower__leaf--3"></div>
           <div class="flower__leaf flower__leaf--4"></div>
           <div class="flower__white-circle"></div>
-  
           <div class="flower__light flower__light--1"></div>
           <div class="flower__light flower__light--2"></div>
           <div class="flower__light flower__light--3"></div>
@@ -28,7 +348,6 @@
           <div class="flower__light flower__light--6"></div>
           <div class="flower__light flower__light--7"></div>
           <div class="flower__light flower__light--8"></div>
-  
         </div>
         <div class="flower__line">
           <div class="flower__line__leaf flower__line__leaf--1"></div>
@@ -39,7 +358,25 @@
           <div class="flower__line__leaf flower__line__leaf--6"></div>
         </div>
       </div>
-  
+
+      <div class="flower flower--rose flower--rose-right">
+        <div class="flower__leafs">
+          <div class="flower__leaf flower__leaf--1"></div>
+          <div class="flower__leaf flower__leaf--2"></div>
+          <div class="flower__leaf flower__leaf--3"></div>
+          <div class="flower__leaf flower__leaf--4"></div>
+          <div class="flower__white-circle"></div>
+          <div class="flower__light flower__light--1"></div>
+          <div class="flower__light flower__light--2"></div>
+          <div class="flower__light flower__light--3"></div>
+          <div class="flower__light flower__light--4"></div>
+        </div>
+        <div class="flower__line">
+          <div class="flower__line__leaf flower__line__leaf--1"></div>
+          <div class="flower__line__leaf flower__line__leaf--2"></div>
+        </div>
+      </div>
+
       <div class="flower flower--2">
         <div class="flower__leafs flower__leafs--2">
           <div class="flower__leaf flower__leaf--1"></div>
@@ -47,7 +384,6 @@
           <div class="flower__leaf flower__leaf--3"></div>
           <div class="flower__leaf flower__leaf--4"></div>
           <div class="flower__white-circle"></div>
-  
           <div class="flower__light flower__light--1"></div>
           <div class="flower__light flower__light--2"></div>
           <div class="flower__light flower__light--3"></div>
@@ -56,7 +392,6 @@
           <div class="flower__light flower__light--6"></div>
           <div class="flower__light flower__light--7"></div>
           <div class="flower__light flower__light--8"></div>
-  
         </div>
         <div class="flower__line">
           <div class="flower__line__leaf flower__line__leaf--1"></div>
@@ -73,7 +408,6 @@
           <div class="flower__leaf flower__leaf--3"></div>
           <div class="flower__leaf flower__leaf--4"></div>
           <div class="flower__white-circle"></div>
-  
           <div class="flower__light flower__light--1"></div>
           <div class="flower__light flower__light--2"></div>
           <div class="flower__light flower__light--3"></div>
@@ -82,7 +416,6 @@
           <div class="flower__light flower__light--6"></div>
           <div class="flower__light flower__light--7"></div>
           <div class="flower__light flower__light--8"></div>
-  
         </div>
         <div class="flower__line">
           <div class="flower__line__leaf flower__line__leaf--1"></div>
@@ -307,6 +640,158 @@
         </div>
       </div>
     </div>
+    
     <script src="main.js"></script>
-  </body>
+
+    <script>
+        window.onload = () => {
+            document.body.classList.remove("container");
+        };
+
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const particles = [];
+        const colors = ['#39c6d6', '#ff66ff', '#ffcc00', '#ff3333', '#a7ffee']; 
+
+        class Particle {
+            constructor(x, y, color) {
+                this.x = x;
+                this.y = y;
+                this.color = color;
+                
+                this.radius = Math.random() * 4 + 2; 
+                this.isHeart = Math.random() > 0.6; 
+                
+                this.rotation = Math.random() * Math.PI * 2;
+                this.rotationSpeed = (Math.random() - 0.5) * 0.05;
+                
+                const angle = Math.random() * Math.PI * 2;
+                const speed = Math.random() * 2 + 0.5; 
+                this.vx = Math.cos(angle) * speed;
+                this.vy = Math.sin(angle) * speed;
+                
+                this.alpha = 1; 
+                this.decay = Math.random() * 0.015 + 0.005; 
+            }
+
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.alpha;
+                ctx.fillStyle = this.color;
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = this.color;
+                
+                if (this.isHeart) {
+                    ctx.translate(this.x, this.y);
+                    ctx.rotate(this.rotation);
+                    
+                    const w = this.radius * 3.5; 
+                    const topCurveHeight = w * 0.3;
+                    
+                    ctx.beginPath();
+                    ctx.moveTo(0, -w/2 + topCurveHeight);
+                    ctx.bezierCurveTo(0, -w/2, -w/2, -w/2, -w/2, -w/2 + topCurveHeight);
+                    ctx.bezierCurveTo(-w/2, -w/2 + (w + topCurveHeight)/2, 0, -w/2 + (w + topCurveHeight)/2, 0, w/2);
+                    ctx.bezierCurveTo(0, -w/2 + (w + topCurveHeight)/2, w/2, -w/2 + (w + topCurveHeight)/2, w/2, -w/2 + topCurveHeight);
+                    ctx.bezierCurveTo(w/2, -w/2, 0, -w/2, 0, -w/2 + topCurveHeight);
+                    ctx.closePath();
+                    ctx.fill();
+                } else {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+                
+                ctx.restore();
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy + 0.15; 
+                this.alpha -= this.decay;
+                if (this.isHeart) {
+                    this.rotation += this.rotationSpeed; 
+                }
+            }
+        }
+
+        function createExplosion(x, y) {
+            const numParticles = 12; 
+            for (let i = 0; i < numParticles; i++) {
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                particles.push(new Particle(x, y, color));
+            }
+        }
+
+        function animateParticles() {
+            requestAnimationFrame(animateParticles);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            for (let i = particles.length - 1; i >= 0; i--) {
+                particles[i].update();
+                particles[i].draw();
+                if (particles[i].alpha <= 0) {
+                    particles.splice(i, 1);
+                }
+            }
+        }
+
+        setInterval(() => {
+            const x = Math.random() * canvas.width;
+            const y = Math.random() * (canvas.height * 0.6); 
+            createExplosion(x, y);
+        }, 1200);
+
+        animateParticles();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // =========================================
+        // SCRIPT LOGIKA PEMUTAR MUSIK
+        // =========================================
+        const audio = document.getElementById('bg-music');
+        const menuBtn = document.getElementById('menu-btn');
+        const musicMenu = document.querySelector('.music-menu');
+
+        menuBtn.addEventListener('click', () => {
+            musicMenu.classList.toggle('active');
+            
+            if (audio.paused) {
+                audio.play().catch(e => console.log("Menunggu interaksi pengguna..."));
+            }
+        });
+
+        function playSong(songSrc) {
+            audio.src = songSrc;
+            audio.play();
+            musicMenu.classList.remove('active');
+        }
+
+        window.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play().catch(e => {});
+            }
+        }, { once: true });
+
+        // =========================================
+        // SCRIPT FUNGSI TRANSISI SLIDE ANTAR HALAMAN
+        // =========================================
+        function slideAndRedirect(url) {
+            const overlay = document.getElementById('slide-overlay');
+            overlay.classList.add('active');
+            
+            // Jeda waktu sebelum pindah halaman, mengikuti durasi CSS (0.6 detik)
+            setTimeout(() => {
+                window.location.href = url;
+            }, 600); 
+        }
+    </script>
+</body>
 </html>
