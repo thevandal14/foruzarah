@@ -11,51 +11,28 @@
            GAYA DASAR & KANVAS
            ========================================= */
         body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #000; 
-            overflow: hidden;
+            margin: 0; padding: 0; width: 100%; height: 100%;
+            background-color: #000; overflow: hidden;
             font-family: 'Arial', sans-serif;
         }
-        
-        canvas {
-            display: block;
-        }
+        canvas { display: block; }
 
         /* =========================================
            GAYA TOMBOL KEMBALI KACA (TENGAH KIRI)
            ========================================= */
         .back-btn-glass {
-            position: fixed;
-            left: 30px;
-            top: 50%;
-            transform: translateY(-50%); /* Memastikan posisi pas di tengah vertikal */
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            background-color: rgba(57, 198, 214, 0.4);
-            border: 1px solid rgba(167, 255, 238, 0.5);
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 26px;
-            cursor: pointer;
+            position: fixed; left: 30px; top: 50%; transform: translateY(-50%); 
+            width: 55px; height: 55px; border-radius: 50%;
+            background-color: rgba(57, 198, 214, 0.4); border: 1px solid rgba(167, 255, 238, 0.5);
+            color: rgba(255, 255, 255, 0.9); font-size: 26px; cursor: pointer;
             box-shadow: 0 0 15px rgba(57, 198, 214, 0.4);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            z-index: 1000;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding-right: 3px; 
+            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            z-index: 1000; transition: all 0.3s;
+            display: flex; align-items: center; justify-content: center; padding-right: 3px; 
         }
-
         .back-btn-glass:hover {
-            /* Transform dipertahankan agar tidak melompat saat di-hover */
             transform: translateY(-50%) scale(1.15); 
-            background-color: rgba(167, 255, 238, 0.9);
-            color: #111;
+            background-color: rgba(167, 255, 238, 0.9); color: #111;
             box-shadow: 0 0 25px rgba(167, 255, 238, 0.8);
         }
 
@@ -63,32 +40,18 @@
            GAYA TOMBOL SURAT KACA (TENGAH KANAN)
            ========================================= */
         .next-btn-glass {
-            position: fixed;
-            right: 30px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            background-color: rgba(57, 198, 214, 0.4);
-            border: 1px solid rgba(167, 255, 238, 0.5);
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 24px; /* Sedikit disesuaikan untuk icon amplop */
-            cursor: pointer;
+            position: fixed; right: 30px; top: 50%; transform: translateY(-50%);
+            width: 55px; height: 55px; border-radius: 50%;
+            background-color: rgba(57, 198, 214, 0.4); border: 1px solid rgba(167, 255, 238, 0.5);
+            color: rgba(255, 255, 255, 0.9); font-size: 24px; cursor: pointer;
             box-shadow: 0 0 15px rgba(57, 198, 214, 0.4);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            z-index: 1000;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            z-index: 1000; transition: all 0.3s;
+            display: flex; align-items: center; justify-content: center;
         }
-
         .next-btn-glass:hover {
             transform: translateY(-50%) scale(1.15);
-            background-color: rgba(167, 255, 238, 0.9);
-            color: #111;
+            background-color: rgba(167, 255, 238, 0.9); color: #111;
             box-shadow: 0 0 25px rgba(167, 255, 238, 0.8);
         }
 
@@ -96,142 +59,70 @@
            GAYA TOMBOL MENU MUSIK KACA (KANAN BAWAH)
            ========================================= */
         .music-menu {
-            position: fixed;
-            right: 30px;
-            bottom: 40px;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: fixed; right: 30px; bottom: 40px; z-index: 1000;
+            display: flex; align-items: center; justify-content: center;
             font-family: 'Poppins', sans-serif;
         }
-
         .menu-btn {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background-color: rgba(20, 117, 122, 0.6); 
-            border: 1px solid rgba(167, 255, 238, 0.5);
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 28px;
-            cursor: pointer;
+            width: 60px; height: 60px; border-radius: 50%;
+            background-color: rgba(20, 117, 122, 0.6); border: 1px solid rgba(167, 255, 238, 0.5);
+            color: rgba(255, 255, 255, 0.9); font-size: 28px; cursor: pointer;
             box-shadow: 0 0 15px rgba(57, 198, 214, 0.4);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            z-index: 2;
-            transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            z-index: 2; transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+            display: flex; align-items: center; justify-content: center;
         }
-
         .menu-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 25px rgba(57, 198, 214, 0.8);
+            transform: scale(1.1); box-shadow: 0 0 25px rgba(57, 198, 214, 0.8);
             background-color: rgba(57, 198, 214, 0.8);
         }
-
-        .menu-options {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            z-index: 1;
-        }
-
+        .menu-options { position: absolute; top: 50%; left: 50%; width: 0; height: 0; z-index: 1; }
         .song-btn {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            margin-top: -22.5px; 
-            margin-left: -22.5px;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background-color: rgba(57, 198, 214, 0.4);
-            border: 1px solid rgba(167, 255, 238, 0.5);
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 900;
-            font-size: 16px;
-            cursor: pointer;
-            box-shadow: 0 0 10px rgba(57, 198, 214, 0.3);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            opacity: 0;
-            transform: scale(0);
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: absolute; top: 50%; left: 50%; margin-top: -22.5px; margin-left: -22.5px;
+            width: 45px; height: 45px; border-radius: 50%;
+            background-color: rgba(57, 198, 214, 0.4); border: 1px solid rgba(167, 255, 238, 0.5);
+            color: rgba(255, 255, 255, 0.9); font-weight: 900; font-size: 16px; cursor: pointer;
+            box-shadow: 0 0 10px rgba(57, 198, 214, 0.3); backdrop-filter: blur(8px);
+            opacity: 0; transform: scale(0); transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            display: flex; align-items: center; justify-content: center;
         }
-
         .song-btn:hover {
-            background-color: rgba(167, 255, 238, 0.9);
-            color: #111;
+            background-color: rgba(167, 255, 238, 0.9); color: #111;
             box-shadow: 0 0 20px rgba(167, 255, 238, 0.8);
         }
-
         .music-menu.active .song-btn:nth-child(1) { opacity: 1; transform: translateY(-75px) scale(1); }
-        .music-menu.active .song-btn:nth-child(1):hover { transform: translateY(-75px) scale(1.1); }
         .music-menu.active .song-btn:nth-child(2) { opacity: 1; transform: translateY(-135px) scale(1); }
-        .music-menu.active .song-btn:nth-child(2):hover { transform: translateY(-135px) scale(1.1); }
         .music-menu.active .song-btn:nth-child(3) { opacity: 1; transform: translateY(-195px) scale(1); }
-        .music-menu.active .song-btn:nth-child(3):hover { transform: translateY(-195px) scale(1.1); }
 
         /* =========================================
            LAYAR HITAM UNTUK TRANSISI SLIDE
            ========================================= */
-        /* Slide untuk kembali (Dari Kiri ke Kanan) */
         .slide-overlay-left {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: #000; z-index: 9999; 
-            transform: translateX(-100%); 
-            transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
-            pointer-events: none;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #000; z-index: 9999; transform: translateX(-100%); 
+            transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1); pointer-events: none;
         }
-        .slide-overlay-left.active {
-            transform: translateX(0); 
-            pointer-events: all;
-        }
-
-        /* Slide untuk maju/surat (Dari Kanan ke Kiri) */
+        .slide-overlay-left.active { transform: translateX(0); pointer-events: all; }
         .slide-overlay-right {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: #000; z-index: 9999; 
-            transform: translateX(100%); 
-            transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
-            pointer-events: none;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #000; z-index: 9999; transform: translateX(100%); 
+            transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1); pointer-events: none;
         }
-        .slide-overlay-right.active {
-            transform: translateX(0); 
-            pointer-events: all;
-        }
+        .slide-overlay-right.active { transform: translateX(0); pointer-events: all; }
 
         /* =========================================
            RESPONSIVITAS UNTUK LAYAR HP
            ========================================= */
         @media screen and (max-width: 600px) {
-            .back-btn-glass, .next-btn-glass {
-                width: 45px;
-                height: 45px;
-                font-size: 20px;
-            }
+            .back-btn-glass, .next-btn-glass { width: 45px; height: 45px; font-size: 20px; }
             .back-btn-glass { left: 15px; }
             .next-btn-glass { right: 15px; }
-            
             .music-menu { right: 15px; bottom: 20px; }
             .menu-btn { width: 50px; height: 50px; font-size: 24px; }
             .song-btn { width: 40px; height: 40px; margin-top: -20px; margin-left: -20px; font-size: 14px; }
-            
             .music-menu.active .song-btn:nth-child(1) { transform: translateY(-65px) scale(1); }
-            .music-menu.active .song-btn:nth-child(1):hover { transform: translateY(-65px) scale(1.1); }
             .music-menu.active .song-btn:nth-child(2) { transform: translateY(-115px) scale(1); }
-            .music-menu.active .song-btn:nth-child(2):hover { transform: translateY(-115px) scale(1.1); }
             .music-menu.active .song-btn:nth-child(3) { transform: translateY(-165px) scale(1); }
-            .music-menu.active .song-btn:nth-child(3):hover { transform: translateY(-165px) scale(1.1); }
         }
     </style>
 </head>
@@ -244,13 +135,8 @@
         <source src="music/default.mp3" type="audio/mpeg">
     </audio>
 
-    <button class="back-btn-glass" onclick="slideBackAndRedirect('flower.html')">
-        ⬅
-    </button>
-
-    <button class="next-btn-glass" onclick="slideNextAndRedirect('surat.html')">
-        ✉️
-    </button>
+    <button class="back-btn-glass" onclick="slideBackAndRedirect('flower.html')">⬅</button>
+    <button class="next-btn-glass" onclick="slideNextAndRedirect('surat.html')">✉️</button>
 
     <div class="music-menu">
         <button class="menu-btn" id="menu-btn">🎵</button>
@@ -274,7 +160,8 @@
         let particles = [];
         let bgParticles = []; 
         
-        let PARTICLE_COUNT = 900; 
+        // Menambah jumlah partikel agar bentuk lebih JELAS & PADAT
+        let PARTICLE_COUNT = 1500; 
         const BG_PARTICLE_COUNT = 300; 
 
         let isFormingShape = false; 
@@ -282,14 +169,14 @@
         
         function getResponsiveShapes() {
             const isMobile = width < 600;
-            const emojiSize = isMobile ? 150 : 300;
-            const textSize = isMobile ? 70 : 160;
-            const lineSpacing = isMobile ? 40 : 80;
+            const shapeSize = isMobile ? 180 : 350; // Ukuran Kue & Love
+            const textSize = isMobile ? 60 : 120; // Ukuran Teks
+            const lineSpacing = isMobile ? 70 : 130;
 
             return [
-                { type: 'text', text: '🎂', size: emojiSize }, 
-                { type: 'text', text: '❤️', size: emojiSize }, 
-                { type: 'multiline', text1: 'HAPPY', text2: 'BIRTHDAY', text3: 'UZZ', size: textSize, spacing: lineSpacing } 
+                { type: 'cake', size: shapeSize }, 
+                { type: 'heart', size: shapeSize }, 
+                { type: 'multiline', text1: 'HAPPY', text2: 'BIRTHDAY', text3: 'UZARA', size: textSize, spacing: lineSpacing } 
             ];
         }
 
@@ -303,26 +190,19 @@
                 this.vx = (Math.random() - 0.5) * 0.3;
                 this.vy = (Math.random() - 0.5) * 0.3;
                 this.radius = Math.random() * 1.5 + 0.5;
-                
                 this.alpha = Math.random();
                 this.alphaChange = (Math.random() * 0.02) - 0.01;
             }
-
             update() {
                 this.x += this.vx;
                 this.y += this.vy;
-
                 if (this.x < 0) this.x = width;
                 if (this.x > width) this.x = 0;
                 if (this.y < 0) this.y = height;
                 if (this.y > height) this.y = 0;
-
                 this.alpha += this.alphaChange;
-                if (this.alpha <= 0.1 || this.alpha >= 0.8) {
-                    this.alphaChange *= -1;
-                }
+                if (this.alpha <= 0.1 || this.alpha >= 0.8) this.alphaChange *= -1;
             }
-
             draw() {
                 ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
                 ctx.beginPath();
@@ -340,24 +220,23 @@
                 this.y = Math.random() * canvas.height;
                 this.targetX = this.x;
                 this.targetY = this.y;
-                
                 this.vx = (Math.random() - 0.5) * 4;
                 this.vy = (Math.random() - 0.5) * 4;
                 
-                this.radius = Math.random() * 2.5 + 1.5;
+                // Ukuran partikel disesuaikan agar detail wujud lebih rapi
+                this.radius = Math.random() * 1.5 + 1.0; 
                 this.hue = Math.random() * 360; 
                 
                 this.angle = Math.random() * Math.PI * 2; 
                 this.floatSpeed = Math.random() * 0.05 + 0.02; 
                 this.floatRadius = Math.random() * 2 + 0.5; 
                 
-                this.springFactor = Math.random() * 0.003 + 0.0005;
+                this.springFactor = Math.random() * 0.005 + 0.001;
 
                 this.isOrbiter = false;
                 this.orbitAngle = Math.random() * Math.PI * 2;
                 this.baseOrbitRadius = 0;
                 this.orbitSpeed = 0;
-                
                 this.wobbleAngle = Math.random() * Math.PI * 2;
                 this.wobbleSpeed = 0;
                 this.wobbleSize = 0;
@@ -370,44 +249,33 @@
                     if (this.isOrbiter) {
                         this.orbitAngle += this.orbitSpeed;
                         this.wobbleAngle += this.wobbleSpeed;
-                        
                         const currentRadius = this.baseOrbitRadius + Math.sin(this.wobbleAngle) * this.wobbleSize;
-                        
                         const orbitTargetX = (width / 2) + Math.cos(this.orbitAngle) * currentRadius;
                         const orbitTargetY = (height / 2) + Math.sin(this.orbitAngle) * (currentRadius * 0.5) + Math.cos(this.wobbleAngle * 1.5) * 50; 
                         
-                        const dx = orbitTargetX - this.x;
-                        const dy = orbitTargetY - this.y;
-                        
-                        this.vx += dx * this.springFactor; 
-                        this.vy += dy * this.springFactor;
+                        this.vx += (orbitTargetX - this.x) * this.springFactor; 
+                        this.vy += (orbitTargetY - this.y) * this.springFactor;
                         this.vx *= 0.95; 
                         this.vy *= 0.95;
-                        
                     } else {
-                        const dx = this.targetX - this.x;
-                        const dy = this.targetY - this.y;
+                        this.vx += (this.targetX - this.x) * this.springFactor;
+                        this.vy += (this.targetY - this.y) * this.springFactor;
+                        this.vx *= 0.92; // Rem yang lebih kuat agar bentuk tak goyang
+                        this.vy *= 0.92;
                         
-                        this.vx += dx * this.springFactor;
-                        this.vy += dy * this.springFactor;
-                        
-                        this.vx *= 0.94;
-                        this.vy *= 0.94;
-                        
+                        // Efek melayang pelan
                         this.angle += this.floatSpeed;
-                        this.x += Math.sin(this.angle) * this.floatRadius * 0.2;
-                        this.y += Math.cos(this.angle) * this.floatRadius * 0.2;
+                        this.x += Math.sin(this.angle) * this.floatRadius * 0.1;
+                        this.y += Math.cos(this.angle) * this.floatRadius * 0.1;
                     }
                 } else {
                     this.vx += (Math.random() - 0.5) * 0.3; 
                     this.vy += (Math.random() - 0.5) * 0.3;
-                    
                     const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
                     if (speed > 2) { 
                         this.vx = (this.vx / speed) * 2;
                         this.vy = (this.vy / speed) * 2;
                     }
-                    
                     if (this.x < 0 || this.x > width) this.vx *= -1;
                     if (this.y < 0 || this.y > height) this.vy *= -1;
                 }
@@ -424,32 +292,64 @@
             }
         }
 
+        // =========================================
+        // FUNGSI MENGGAMBAR WUJUD PRESISI (VECTOR PATH)
+        // =========================================
         function getShapeCoordinates(shapeDef) {
             const offCanvas = document.createElement('canvas');
             const offCtx = offCanvas.getContext('2d', { willReadFrequently: true });
             
             offCanvas.width = width;
             offCanvas.height = height;
-            
-            offCtx.textAlign = 'center';
-            offCtx.textBaseline = 'middle';
             offCtx.fillStyle = 'white';
 
-            if (shapeDef.type === 'text') {
-                offCtx.font = `900 ${shapeDef.size}px 'Arial Black', Arial, sans-serif`;
-                offCtx.fillText(shapeDef.text, width / 2, height / 2);
+            if (shapeDef.type === 'cake') {
+                const s = shapeDef.size; 
+                offCtx.translate(width / 2, height / 2 + s * 0.4);
+                
+                // Lapisan Bawah
+                offCtx.fillRect(-s*0.6, -s*0.3, s*1.2, s*0.3);
+                // Lapisan Tengah
+                offCtx.fillRect(-s*0.45, -s*0.6, s*0.9, s*0.3);
+                // Lapisan Atas
+                offCtx.fillRect(-s*0.3, -s*0.9, s*0.6, s*0.3);
+                
+                // Lilin (Kiri, Tengah, Kanan)
+                offCtx.fillRect(-s*0.15, -s*1.2, s*0.04, s*0.3);
+                offCtx.fillRect(-s*0.02, -s*1.25, s*0.04, s*0.35);
+                offCtx.fillRect(s*0.11, -s*1.2, s*0.04, s*0.3);
+                
+                // Api Lilin
+                offCtx.beginPath(); offCtx.arc(-s*0.13, -s*1.3, s*0.06, 0, Math.PI*2); offCtx.fill();
+                offCtx.beginPath(); offCtx.arc(0, -s*1.35, s*0.06, 0, Math.PI*2); offCtx.fill();
+                offCtx.beginPath(); offCtx.arc(s*0.13, -s*1.3, s*0.06, 0, Math.PI*2); offCtx.fill();
+
+            } else if (shapeDef.type === 'heart') {
+                const s = shapeDef.size * 0.6; // Skala Love
+                offCtx.translate(width / 2, height / 2 - s * 0.3);
+                offCtx.beginPath();
+                const topCurveHeight = s * 0.3;
+                offCtx.moveTo(0, topCurveHeight);
+                offCtx.bezierCurveTo(0, 0, -s, 0, -s, topCurveHeight);
+                offCtx.bezierCurveTo(-s, (s + topCurveHeight) / 2, 0, s * 1.3, 0, s * 1.6);
+                offCtx.bezierCurveTo(0, s * 1.3, s, (s + topCurveHeight) / 2, s, topCurveHeight);
+                offCtx.bezierCurveTo(s, 0, 0, 0, 0, topCurveHeight);
+                offCtx.fill();
+
             } else if (shapeDef.type === 'multiline') {
+                offCtx.textAlign = 'center';
+                offCtx.textBaseline = 'middle';
                 offCtx.font = `900 ${shapeDef.size}px 'Arial Black', Arial, sans-serif`;
                 offCtx.fillText(shapeDef.text1, width / 2, height / 2 - shapeDef.spacing);
-                offCtx.fillText(shapeDef.text2, width / 2, height / 2 + shapeDef.spacing);
-                offCtx.fillText(shapeDef.text3, width / 2, height / 2 + shapeDef.spacing * 3);
+                offCtx.fillText(shapeDef.text2, width / 2, height / 2);
+                offCtx.fillText(shapeDef.text3, width / 2, height / 2 + shapeDef.spacing);
             }
 
             const data = offCtx.getImageData(0, 0, width, height).data;
             const points = [];
             
-            const isMobile = width < 600;
-            const step = isMobile ? 3 : 8; // Lebih renggang (8) di PC, merapat (3) di HP
+            // Jarak pemindaian piksel (Lebih kecil = Lebih padat partikelnya)
+            const step = (width < 600) ? 3 : 5; 
             
             for (let y = 0; y < height; y += step) {
                 for (let x = 0; x < width; x += step) {
@@ -464,11 +364,11 @@
 
         function setTargetShape(points) {
             if (points.length === 0) return;
-            
             particles.sort(() => Math.random() - 0.5);
 
             let sampledPoints = points;
-            const maxPointsForShape = Math.floor(particles.length * 0.80); 
+            // Gunakan hingga 90% partikel untuk bentuk utama agar sangat jelas
+            const maxPointsForShape = Math.floor(particles.length * 0.90); 
             
             if (points.length > maxPointsForShape) {
                 const step = points.length / maxPointsForShape;
@@ -482,7 +382,6 @@
 
             for (let i = 0; i < particles.length; i++) {
                 const p = particles[i];
-                
                 if (i < sampledPoints.length) {
                     p.isOrbiter = false;
                     p.targetX = sampledPoints[i].x;
@@ -491,10 +390,8 @@
                     p.isOrbiter = true;
                     const orbitBase = isMobile ? 80 : 120;
                     const orbitVar = isMobile ? 60 : 80;
-                    
                     p.baseOrbitRadius = Math.random() * orbitVar + orbitBase; 
                     p.orbitSpeed = (Math.random() > 0.5 ? 1 : -1) * (Math.random() * 0.02 + 0.005);
-                    
                     p.wobbleSpeed = Math.random() * 0.03 + 0.01;
                     p.wobbleAngle = Math.random() * Math.PI * 2;
                     p.wobbleSize = Math.random() * 30 + 10; 
@@ -515,9 +412,9 @@
                 
                 shapeIndex = (shapeIndex + 1) % currentShapes.length;
                 
-                setTimeout(runSequence, 12000);
+                setTimeout(runSequence, 12000); // Tahan bentuk selama 12 detik
 
-            }, 4000); 
+            }, 3000); // Partikel bubar dan istirahat 3 detik
         }
 
         function init() {
@@ -525,7 +422,7 @@
             height = canvas.height = window.innerHeight;
             
             const isMobile = width < 600;
-            PARTICLE_COUNT = isMobile ? 600 : 900;
+            PARTICLE_COUNT = isMobile ? 900 : 1800; // Jumlah pasukan partikel ditambah
             
             particles = [];
             for (let i = 0; i < PARTICLE_COUNT; i++) {
@@ -539,7 +436,8 @@
         }
 
         function animate() {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)'; 
+            // Efek ekor partikel
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.12)'; 
             ctx.fillRect(0, 0, width, height);
 
             for (let i = 0; i < bgParticles.length; i++) {
@@ -564,7 +462,7 @@
         runSequence(); 
 
         // =========================================
-        // LOGIKA PEMUTAR MUSIK
+        // LOGIKA PEMUTAR MUSIK & TRANSISI
         // =========================================
         const audio = document.getElementById('bg-music');
         const menuBtn = document.getElementById('menu-btn');
@@ -573,7 +471,7 @@
         menuBtn.addEventListener('click', () => {
             musicMenu.classList.toggle('active');
             if (audio.paused) {
-                audio.play().catch(e => console.log("Menunggu interaksi pengguna..."));
+                audio.play().catch(e => console.log("Menunggu interaksi..."));
             }
         });
 
@@ -584,31 +482,17 @@
         }
 
         window.addEventListener('click', () => {
-            if (audio.paused) {
-                audio.play().catch(e => {});
-            }
+            if (audio.paused) audio.play().catch(e => {});
         }, { once: true });
 
-        // =========================================
-        // FUNGSI SLIDE TRANSISI ANTAR HALAMAN
-        // =========================================
-        
-        // Transisi Kembali (Layar hitam datang dari KIRI)
         function slideBackAndRedirect(url) {
-            const overlay = document.getElementById('slide-overlay-left');
-            overlay.classList.add('active');
-            setTimeout(() => {
-                window.location.href = url;
-            }, 600); 
+            document.getElementById('slide-overlay-left').classList.add('active');
+            setTimeout(() => { window.location.href = url; }, 600); 
         }
 
-        // Transisi Maju ke Surat (Layar hitam datang dari KANAN)
         function slideNextAndRedirect(url) {
-            const overlay = document.getElementById('slide-overlay-right');
-            overlay.classList.add('active');
-            setTimeout(() => {
-                window.location.href = url;
-            }, 600); 
+            document.getElementById('slide-overlay-right').classList.add('active');
+            setTimeout(() => { window.location.href = url; }, 600); 
         }
     </script>
 </body>

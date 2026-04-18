@@ -24,7 +24,7 @@
             font-family: 'Poppins', cursive;
             color: azure;
             width: 100%;
-            pointer-events: none;
+            pointer-events: none; /* Agar teks tidak menghalangi klik pada bunga */
         }
         
         .greetings {
@@ -34,9 +34,7 @@
             animation: slow-glow 4s ease-in-out infinite;
         }
         
-        .greetings > span {
-            display: inline-block; 
-        }
+        .greetings > span { display: inline-block; }
         
         .description {
             font-size: 0.9rem; 
@@ -46,31 +44,13 @@
         }
 
         @keyframes slow-glow {
-            0%, 100% {
-                color: #fff;
-                text-shadow: 0 0 12px #39c6d6, 0 0 40px #39c6d6, 0 0 80px #39c6d6;
-            }
-            50% {
-                color: #555; 
-                text-shadow: 0 0 5px rgba(57, 198, 214, 0.2); 
-            }
+            0%, 100% { color: #fff; text-shadow: 0 0 12px #39c6d6, 0 0 40px #39c6d6, 0 0 80px #39c6d6; }
+            50% { color: #555; text-shadow: 0 0 5px rgba(57, 198, 214, 0.2); }
         }
 
         @keyframes slow-glow-desc {
-            0%, 100% {
-                color: #fff;
-                text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-            }
-            50% {
-                color: #888;
-                text-shadow: 0 1px 2px rgba(0,0,0,0.8);
-            }
-        }
-
-        @media screen and (max-width: 574px) {
-            .text-wrapper { top: 8%; }
-            .greetings { font-size: 2.5rem; font-weight: 500; }
-            .description { font-size: 0.1rem; }
+            0%, 100% { color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+            50% { color: #888; text-shadow: 0 1px 2px rgba(0,0,0,0.8); }
         }
 
         /* =========================================
@@ -116,154 +96,113 @@
            GAYA KANVAS UNTUK PARTIKEL
            ========================================= */
         #particles-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 50; 
-            pointer-events: none; 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 50; pointer-events: none; 
         }
 
         /* =========================================
            GAYA TOMBOL MENU MUSIK 
            ========================================= */
         .music-menu {
-            position: fixed;
-            right: 30px;
-            bottom: 40px;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: fixed; right: 30px; bottom: 40px; z-index: 1000;
+            display: flex; align-items: center; justify-content: center;
             font-family: 'Poppins', sans-serif;
         }
 
         .menu-btn {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
+            width: 60px; height: 60px; border-radius: 50%;
             background-color: rgba(20, 117, 122, 0.6); 
             border: 1px solid rgba(167, 255, 238, 0.5);
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 28px;
-            cursor: pointer;
+            color: rgba(255, 255, 255, 0.9); font-size: 28px; cursor: pointer;
             box-shadow: 0 0 15px rgba(57, 198, 214, 0.4);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            z-index: 2;
-            transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            z-index: 2; transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+            display: flex; align-items: center; justify-content: center;
         }
-
         .menu-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 25px rgba(57, 198, 214, 0.8);
+            transform: scale(1.1); box-shadow: 0 0 25px rgba(57, 198, 214, 0.8);
             background-color: rgba(57, 198, 214, 0.8);
         }
 
-        .menu-options {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            z-index: 1;
-        }
+        .menu-options { position: absolute; top: 50%; left: 50%; width: 0; height: 0; z-index: 1; }
 
         .song-btn {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            margin-top: -22.5px; 
-            margin-left: -22.5px;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background-color: rgba(57, 198, 214, 0.4);
-            border: 1px solid rgba(167, 255, 238, 0.5);
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 900;
-            font-size: 16px;
-            cursor: pointer;
-            box-shadow: 0 0 10px rgba(57, 198, 214, 0.3);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            opacity: 0;
-            transform: scale(0);
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: absolute; top: 50%; left: 50%;
+            margin-top: -22.5px; margin-left: -22.5px;
+            width: 45px; height: 45px; border-radius: 50%;
+            background-color: rgba(57, 198, 214, 0.4); border: 1px solid rgba(167, 255, 238, 0.5);
+            color: rgba(255, 255, 255, 0.9); font-weight: 900; font-size: 16px; cursor: pointer;
+            box-shadow: 0 0 10px rgba(57, 198, 214, 0.3); backdrop-filter: blur(8px);
+            opacity: 0; transform: scale(0); transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            display: flex; align-items: center; justify-content: center;
         }
-
-        .song-btn:hover {
-            background-color: rgba(167, 255, 238, 0.9);
-            color: #111;
-            box-shadow: 0 0 20px rgba(167, 255, 238, 0.8);
-        }
+        .song-btn:hover { background-color: rgba(167, 255, 238, 0.9); color: #111; box-shadow: 0 0 20px rgba(167, 255, 238, 0.8); }
 
         .music-menu.active .song-btn:nth-child(1) { opacity: 1; transform: translateY(-75px) scale(1); }
-        .music-menu.active .song-btn:nth-child(1):hover { transform: translateY(-75px) scale(1.1); }
         .music-menu.active .song-btn:nth-child(2) { opacity: 1; transform: translateY(-135px) scale(1); }
-        .music-menu.active .song-btn:nth-child(2):hover { transform: translateY(-135px) scale(1.1); }
         .music-menu.active .song-btn:nth-child(3) { opacity: 1; transform: translateY(-195px) scale(1); }
-        .music-menu.active .song-btn:nth-child(3):hover { transform: translateY(-195px) scale(1.1); }
 
         /* =========================================
            GAYA TOMBOL PINDAH HALAMAN (NEXT PAGE)
            ========================================= */
         .next-page-btn {
-            position: fixed;
-            right: 30px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            background-color: rgba(57, 198, 214, 0.4);
-            border: 1px solid rgba(167, 255, 238, 0.5);
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 26px;
-            cursor: pointer;
-            box-shadow: 0 0 15px rgba(57, 198, 214, 0.4);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            z-index: 1000;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: fixed; right: 30px; top: 50%; transform: translateY(-50%);
+            width: 55px; height: 55px; border-radius: 50%;
+            background-color: rgba(57, 198, 214, 0.4); border: 1px solid rgba(167, 255, 238, 0.5);
+            color: rgba(255, 255, 255, 0.9); font-size: 26px; cursor: pointer;
+            box-shadow: 0 0 15px rgba(57, 198, 214, 0.4); backdrop-filter: blur(8px);
+            z-index: 1000; transition: all 0.3s; display: flex; align-items: center; justify-content: center;
         }
-
         .next-page-btn:hover {
-            transform: translateY(-50%) scale(1.15);
-            background-color: rgba(167, 255, 238, 0.9);
-            color: #111;
-            box-shadow: 0 0 25px rgba(167, 255, 238, 0.8);
+            transform: translateY(-50%) scale(1.15); background-color: rgba(167, 255, 238, 0.9);
+            color: #111; box-shadow: 0 0 25px rgba(167, 255, 238, 0.8);
         }
 
         /* =========================================
            LAYAR HITAM UNTUK TRANSISI SLIDE
            ========================================= */
         .slide-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #000; 
-            z-index: 9999; 
-            transform: translateX(100%); 
-            transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
-            pointer-events: none;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #000; z-index: 9999; transform: translateX(100%); 
+            transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1); pointer-events: none;
         }
+        .slide-overlay.active { transform: translateX(0); pointer-events: all; }
 
-        .slide-overlay.active {
-            transform: translateX(0); 
-            pointer-events: all;
+        /* =========================================
+           RESPONSIVITAS UNTUK SMARTPHONE (MOBILE)
+           ========================================= */
+        @media screen and (max-width: 600px) {
+            /* Menyesuaikan Teks Utama */
+            .text-wrapper { top: 12%; }
+            .greetings { font-size: 2.2rem; letter-spacing: 1px; }
+            .description { font-size: 0.9rem; margin-top: 5px; }
+
+            /* Menyesuaikan Posisi dan Skala Bunga Mawar Samping */
+            .flower--rose-left { left: 10%; bottom: 10vmin; }
+            .flower--rose-right { left: 75%; bottom: 10vmin; }
+            
+            /* Mengubah skala animasi mawar agar lebih kecil di HP */
+            @keyframes moving-rose-left {
+                0%, 100% { transform: scale(0.35) rotate(15deg); }
+                50% { transform: scale(0.35) rotate(10deg); }
+            }
+            @keyframes moving-rose-right {
+                0%, 100% { transform: scale(0.35) rotate(-15deg); }
+                50% { transform: scale(0.35) rotate(-20deg); }
+            }
+
+            /* Menyesuaikan Tombol Musik */
+            .music-menu { right: 15px; bottom: 20px; }
+            .menu-btn { width: 50px; height: 50px; font-size: 24px; }
+            .song-btn { width: 40px; height: 40px; margin-top: -20px; margin-left: -20px; font-size: 14px; }
+            
+            /* Menyesuaikan pancaran tombol menu di HP */
+            .music-menu.active .song-btn:nth-child(1) { transform: translateY(-65px) scale(1); }
+            .music-menu.active .song-btn:nth-child(2) { transform: translateY(-115px) scale(1); }
+            .music-menu.active .song-btn:nth-child(3) { transform: translateY(-165px) scale(1); }
+
+            /* Menyesuaikan Tombol Panah Pindah Halaman */
+            .next-page-btn { right: 15px; width: 45px; height: 45px; font-size: 20px; }
         }
 
     </style>
@@ -282,22 +221,10 @@
 
     <div class="text-wrapper">
         <div class="greetings">
-            <span>H</span>
-            <span>A</span>
-            <span>P</span>
-            <span>P</span>
-            <span>Y</span>
+            <span>H</span><span>A</span><span>P</span><span>P</span><span>Y</span>
             <span> </span>
-            <span>B</span>  
-            <span>I</span>
-            <span>R</span>
-            <span>T</span>
-            <span>H</span>
-            <span>D</span>
-            <span>A</span>
-            <span>Y</span>
+            <span>B</span><span>I</span><span>R</span><span>T</span><span>H</span><span>D</span><span>A</span><span>Y</span>
         </div>
-
     </div>
 
     <button class="next-page-btn" onclick="slideAndRedirect('partikel.html')">
@@ -464,44 +391,19 @@
         </div>
       </div>
   
-      <div class="grow-ans" style="--d:2.4s">
-        <div class="flower__g-right flower__g-right--1">
-          <div class="leaf"></div>
-        </div>
-      </div>
-  
-      <div class="grow-ans" style="--d:2.8s">
-        <div class="flower__g-right flower__g-right--2">
-          <div class="leaf"></div>
-        </div>
-      </div>
+      <div class="grow-ans" style="--d:2.4s"><div class="flower__g-right flower__g-right--1"><div class="leaf"></div></div></div>
+      <div class="grow-ans" style="--d:2.8s"><div class="flower__g-right flower__g-right--2"><div class="leaf"></div></div></div>
   
       <div class="grow-ans" style="--d:2.8s">
         <div class="flower__g-front">
-          <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--1">
-            <div class="flower__g-front__leaf"></div>
-          </div>
-          <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--2">
-            <div class="flower__g-front__leaf"></div>
-          </div>
-          <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--3">
-            <div class="flower__g-front__leaf"></div>
-          </div>
-          <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--4">
-            <div class="flower__g-front__leaf"></div>
-          </div>
-          <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--5">
-            <div class="flower__g-front__leaf"></div>
-          </div>
-          <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--6">
-            <div class="flower__g-front__leaf"></div>
-          </div>
-          <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--7">
-            <div class="flower__g-front__leaf"></div>
-          </div>
-          <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--8">
-            <div class="flower__g-front__leaf"></div>
-          </div>
+          <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--1"><div class="flower__g-front__leaf"></div></div>
+          <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--2"><div class="flower__g-front__leaf"></div></div>
+          <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--3"><div class="flower__g-front__leaf"></div></div>
+          <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--4"><div class="flower__g-front__leaf"></div></div>
+          <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--5"><div class="flower__g-front__leaf"></div></div>
+          <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--6"><div class="flower__g-front__leaf"></div></div>
+          <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--7"><div class="flower__g-front__leaf"></div></div>
+          <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--8"><div class="flower__g-front__leaf"></div></div>
           <div class="flower__g-front__line"></div>
         </div>
       </div>
@@ -521,123 +423,52 @@
       </div>
   
       <div class="long-g long-g--0">
-        <div class="grow-ans" style="--d:3s">
-          <div class="leaf leaf--0"></div>
-        </div>
-        <div class="grow-ans" style="--d:2.2s">
-          <div class="leaf leaf--1"></div>
-        </div>
-        <div class="grow-ans" style="--d:3.4s">
-          <div class="leaf leaf--2"></div>
-        </div>
-        <div class="grow-ans" style="--d:3.6s">
-          <div class="leaf leaf--3"></div>
-        </div>
+        <div class="grow-ans" style="--d:3s"><div class="leaf leaf--0"></div></div>
+        <div class="grow-ans" style="--d:2.2s"><div class="leaf leaf--1"></div></div>
+        <div class="grow-ans" style="--d:3.4s"><div class="leaf leaf--2"></div></div>
+        <div class="grow-ans" style="--d:3.6s"><div class="leaf leaf--3"></div></div>
       </div>
-  
       <div class="long-g long-g--1">
-        <div class="grow-ans" style="--d:3.6s">
-          <div class="leaf leaf--0"></div>
-        </div>
-        <div class="grow-ans" style="--d:3.8s">
-          <div class="leaf leaf--1"></div>
-        </div>
-        <div class="grow-ans" style="--d:4s">
-          <div class="leaf leaf--2"></div>
-        </div>
-        <div class="grow-ans" style="--d:4.2s">
-          <div class="leaf leaf--3"></div>
-        </div>
+        <div class="grow-ans" style="--d:3.6s"><div class="leaf leaf--0"></div></div>
+        <div class="grow-ans" style="--d:3.8s"><div class="leaf leaf--1"></div></div>
+        <div class="grow-ans" style="--d:4s"><div class="leaf leaf--2"></div></div>
+        <div class="grow-ans" style="--d:4.2s"><div class="leaf leaf--3"></div></div>
       </div>
-  
       <div class="long-g long-g--2">
-        <div class="grow-ans" style="--d:4s">
-          <div class="leaf leaf--0"></div>
-        </div>
-        <div class="grow-ans" style="--d:4.2s">
-          <div class="leaf leaf--1"></div>
-        </div>
-        <div class="grow-ans" style="--d:4.4s">
-          <div class="leaf leaf--2"></div>
-        </div>
-        <div class="grow-ans" style="--d:4.6s">
-          <div class="leaf leaf--3"></div>
-        </div>
+        <div class="grow-ans" style="--d:4s"><div class="leaf leaf--0"></div></div>
+        <div class="grow-ans" style="--d:4.2s"><div class="leaf leaf--1"></div></div>
+        <div class="grow-ans" style="--d:4.4s"><div class="leaf leaf--2"></div></div>
+        <div class="grow-ans" style="--d:4.6s"><div class="leaf leaf--3"></div></div>
       </div>
-  
       <div class="long-g long-g--3">
-        <div class="grow-ans" style="--d:4s">
-          <div class="leaf leaf--0"></div>
-        </div>
-        <div class="grow-ans" style="--d:4.2s">
-          <div class="leaf leaf--1"></div>
-        </div>
-        <div class="grow-ans" style="--d:3s">
-          <div class="leaf leaf--2"></div>
-        </div>
-        <div class="grow-ans" style="--d:3.6s">
-          <div class="leaf leaf--3"></div>
-        </div>
+        <div class="grow-ans" style="--d:4s"><div class="leaf leaf--0"></div></div>
+        <div class="grow-ans" style="--d:4.2s"><div class="leaf leaf--1"></div></div>
+        <div class="grow-ans" style="--d:3s"><div class="leaf leaf--2"></div></div>
+        <div class="grow-ans" style="--d:3.6s"><div class="leaf leaf--3"></div></div>
       </div>
-  
       <div class="long-g long-g--4">
-        <div class="grow-ans" style="--d:4s">
-          <div class="leaf leaf--0"></div>
-        </div>
-        <div class="grow-ans" style="--d:4.2s">
-          <div class="leaf leaf--1"></div>
-        </div>
-        <div class="grow-ans" style="--d:3s">
-          <div class="leaf leaf--2"></div>
-        </div>
-        <div class="grow-ans" style="--d:3.6s">
-          <div class="leaf leaf--3"></div>
-        </div>
+        <div class="grow-ans" style="--d:4s"><div class="leaf leaf--0"></div></div>
+        <div class="grow-ans" style="--d:4.2s"><div class="leaf leaf--1"></div></div>
+        <div class="grow-ans" style="--d:3s"><div class="leaf leaf--2"></div></div>
+        <div class="grow-ans" style="--d:3.6s"><div class="leaf leaf--3"></div></div>
       </div>
-  
       <div class="long-g long-g--5">
-        <div class="grow-ans" style="--d:4s">
-          <div class="leaf leaf--0"></div>
-        </div>
-        <div class="grow-ans" style="--d:4.2s">
-          <div class="leaf leaf--1"></div>
-        </div>
-        <div class="grow-ans" style="--d:3s">
-          <div class="leaf leaf--2"></div>
-        </div>
-        <div class="grow-ans" style="--d:3.6s">
-          <div class="leaf leaf--3"></div>
-        </div>
+        <div class="grow-ans" style="--d:4s"><div class="leaf leaf--0"></div></div>
+        <div class="grow-ans" style="--d:4.2s"><div class="leaf leaf--1"></div></div>
+        <div class="grow-ans" style="--d:3s"><div class="leaf leaf--2"></div></div>
+        <div class="grow-ans" style="--d:3.6s"><div class="leaf leaf--3"></div></div>
       </div>
-  
       <div class="long-g long-g--6">
-        <div class="grow-ans" style="--d:4.2s">
-          <div class="leaf leaf--0"></div>
-        </div>
-        <div class="grow-ans" style="--d:4.4s">
-          <div class="leaf leaf--1"></div>
-        </div>
-        <div class="grow-ans" style="--d:4.6s">
-          <div class="leaf leaf--2"></div>
-        </div>
-        <div class="grow-ans" style="--d:4.8s">
-          <div class="leaf leaf--3"></div>
-        </div>
+        <div class="grow-ans" style="--d:4.2s"><div class="leaf leaf--0"></div></div>
+        <div class="grow-ans" style="--d:4.4s"><div class="leaf leaf--1"></div></div>
+        <div class="grow-ans" style="--d:4.6s"><div class="leaf leaf--2"></div></div>
+        <div class="grow-ans" style="--d:4.8s"><div class="leaf leaf--3"></div></div>
       </div>
-  
       <div class="long-g long-g--7">
-        <div class="grow-ans" style="--d:3s">
-          <div class="leaf leaf--0"></div>
-        </div>
-        <div class="grow-ans" style="--d:3.2s">
-          <div class="leaf leaf--1"></div>
-        </div>
-        <div class="grow-ans" style="--d:3.5s">
-          <div class="leaf leaf--2"></div>
-        </div>
-        <div class="grow-ans" style="--d:3.6s">
-          <div class="leaf leaf--3"></div>
-        </div>
+        <div class="grow-ans" style="--d:3s"><div class="leaf leaf--0"></div></div>
+        <div class="grow-ans" style="--d:3.2s"><div class="leaf leaf--1"></div></div>
+        <div class="grow-ans" style="--d:3.5s"><div class="leaf leaf--2"></div></div>
+        <div class="grow-ans" style="--d:3.6s"><div class="leaf leaf--3"></div></div>
       </div>
     </div>
     
@@ -787,7 +618,6 @@
             const overlay = document.getElementById('slide-overlay');
             overlay.classList.add('active');
             
-            // Jeda waktu sebelum pindah halaman, mengikuti durasi CSS (0.6 detik)
             setTimeout(() => {
                 window.location.href = url;
             }, 600); 
