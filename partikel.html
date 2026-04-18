@@ -160,7 +160,7 @@
         let particles = [];
         let bgParticles = []; 
         
-        // Menambah jumlah partikel agar bentuk lebih JELAS & PADAT
+        // Jumlah partikel yang padat
         let PARTICLE_COUNT = 1500; 
         const BG_PARTICLE_COUNT = 300; 
 
@@ -169,14 +169,14 @@
         
         function getResponsiveShapes() {
             const isMobile = width < 600;
-            const shapeSize = isMobile ? 180 : 350; // Ukuran Kue & Love
-            const textSize = isMobile ? 60 : 120; // Ukuran Teks
+            const shapeSize = isMobile ? 160 : 320; 
+            const textSize = isMobile ? 60 : 120; 
             const lineSpacing = isMobile ? 70 : 130;
 
             return [
                 { type: 'cake', size: shapeSize }, 
                 { type: 'heart', size: shapeSize }, 
-                { type: 'multiline', text1: 'HAPPY', text2: 'BIRTHDAY', text3: 'UZARA', size: textSize, spacing: lineSpacing } 
+                { type: 'multiline', text1: 'HAPPY', text2: 'BIRTHDAY', text3: 'UZZ', size: textSize, spacing: lineSpacing } 
             ];
         }
 
@@ -223,7 +223,6 @@
                 this.vx = (Math.random() - 0.5) * 4;
                 this.vy = (Math.random() - 0.5) * 4;
                 
-                // Ukuran partikel disesuaikan agar detail wujud lebih rapi
                 this.radius = Math.random() * 1.5 + 1.0; 
                 this.hue = Math.random() * 360; 
                 
@@ -260,10 +259,9 @@
                     } else {
                         this.vx += (this.targetX - this.x) * this.springFactor;
                         this.vy += (this.targetY - this.y) * this.springFactor;
-                        this.vx *= 0.92; // Rem yang lebih kuat agar bentuk tak goyang
+                        this.vx *= 0.92; 
                         this.vy *= 0.92;
                         
-                        // Efek melayang pelan
                         this.angle += this.floatSpeed;
                         this.x += Math.sin(this.angle) * this.floatRadius * 0.1;
                         this.y += Math.cos(this.angle) * this.floatRadius * 0.1;
@@ -293,7 +291,7 @@
         }
 
         // =========================================
-        // FUNGSI MENGGAMBAR WUJUD PRESISI (VECTOR PATH)
+        // FUNGSI MENGGAMBAR WUJUD KOTAK & LOVE SEMPURNA
         // =========================================
         function getShapeCoordinates(shapeDef) {
             const offCanvas = document.createElement('canvas');
@@ -305,35 +303,37 @@
 
             if (shapeDef.type === 'cake') {
                 const s = shapeDef.size; 
-                offCtx.translate(width / 2, height / 2 + s * 0.4);
+                offCtx.translate(width / 2, height / 2 + s * 0.2);
                 
-                // Lapisan Bawah
-                offCtx.fillRect(-s*0.6, -s*0.3, s*1.2, s*0.3);
-                // Lapisan Tengah
-                offCtx.fillRect(-s*0.45, -s*0.6, s*0.9, s*0.3);
-                // Lapisan Atas
-                offCtx.fillRect(-s*0.3, -s*0.9, s*0.6, s*0.3);
+                // Kue Kotak Sederhana dan Presisi (Satu Kotak Utama)
+                offCtx.fillRect(-s*0.5, -s*0.3, s, s*0.4);
                 
-                // Lilin (Kiri, Tengah, Kanan)
-                offCtx.fillRect(-s*0.15, -s*1.2, s*0.04, s*0.3);
-                offCtx.fillRect(-s*0.02, -s*1.25, s*0.04, s*0.35);
-                offCtx.fillRect(s*0.11, -s*1.2, s*0.04, s*0.3);
+                // 3 Lilin Presisi
+                offCtx.fillRect(-s*0.3, -s*0.6, s*0.05, s*0.3); // Lilin Kiri
+                offCtx.fillRect(-s*0.025, -s*0.65, s*0.05, s*0.35); // Lilin Tengah
+                offCtx.fillRect(s*0.25, -s*0.6, s*0.05, s*0.3); // Lilin Kanan
                 
-                // Api Lilin
-                offCtx.beginPath(); offCtx.arc(-s*0.13, -s*1.3, s*0.06, 0, Math.PI*2); offCtx.fill();
-                offCtx.beginPath(); offCtx.arc(0, -s*1.35, s*0.06, 0, Math.PI*2); offCtx.fill();
-                offCtx.beginPath(); offCtx.arc(s*0.13, -s*1.3, s*0.06, 0, Math.PI*2); offCtx.fill();
+                // Api Lilin Bulat
+                offCtx.beginPath(); offCtx.arc(-s*0.275, -s*0.65, s*0.04, 0, Math.PI*2); offCtx.fill();
+                offCtx.beginPath(); offCtx.arc(0, -s*0.72, s*0.04, 0, Math.PI*2); offCtx.fill();
+                offCtx.beginPath(); offCtx.arc(s*0.275, -s*0.65, s*0.04, 0, Math.PI*2); offCtx.fill();
 
             } else if (shapeDef.type === 'heart') {
-                const s = shapeDef.size * 0.6; // Skala Love
-                offCtx.translate(width / 2, height / 2 - s * 0.3);
+                const s = shapeDef.size * 0.8; 
+                offCtx.translate(width / 2, height / 2 - s * 0.4);
+                
+                // Rumus Love Sempurna dan Simetris
                 offCtx.beginPath();
-                const topCurveHeight = s * 0.3;
-                offCtx.moveTo(0, topCurveHeight);
-                offCtx.bezierCurveTo(0, 0, -s, 0, -s, topCurveHeight);
-                offCtx.bezierCurveTo(-s, (s + topCurveHeight) / 2, 0, s * 1.3, 0, s * 1.6);
-                offCtx.bezierCurveTo(0, s * 1.3, s, (s + topCurveHeight) / 2, s, topCurveHeight);
-                offCtx.bezierCurveTo(s, 0, 0, 0, 0, topCurveHeight);
+                // Mulai dari titik lekukan atas tengah
+                offCtx.moveTo(0, s * 0.2);
+                // Lengkungan Kiri Atas
+                offCtx.bezierCurveTo(0, -s * 0.1, -s * 0.6, -s * 0.1, -s * 0.6, s * 0.3);
+                // Lengkungan Kiri Bawah menuju ujung runcing
+                offCtx.bezierCurveTo(-s * 0.6, s * 0.7, 0, s * 1.1, 0, s * 1.2);
+                // Lengkungan Kanan Bawah dari ujung runcing
+                offCtx.bezierCurveTo(0, s * 1.1, s * 0.6, s * 0.7, s * 0.6, s * 0.3);
+                // Lengkungan Kanan Atas menuju lekukan tengah
+                offCtx.bezierCurveTo(s * 0.6, -s * 0.1, 0, -s * 0.1, 0, s * 0.2);
                 offCtx.fill();
 
             } else if (shapeDef.type === 'multiline') {
@@ -348,7 +348,7 @@
             const data = offCtx.getImageData(0, 0, width, height).data;
             const points = [];
             
-            // Jarak pemindaian piksel (Lebih kecil = Lebih padat partikelnya)
+            // Jarak pemindaian piksel (Lebih padat)
             const step = (width < 600) ? 3 : 5; 
             
             for (let y = 0; y < height; y += step) {
@@ -367,7 +367,6 @@
             particles.sort(() => Math.random() - 0.5);
 
             let sampledPoints = points;
-            // Gunakan hingga 90% partikel untuk bentuk utama agar sangat jelas
             const maxPointsForShape = Math.floor(particles.length * 0.90); 
             
             if (points.length > maxPointsForShape) {
@@ -412,9 +411,9 @@
                 
                 shapeIndex = (shapeIndex + 1) % currentShapes.length;
                 
-                setTimeout(runSequence, 12000); // Tahan bentuk selama 12 detik
+                setTimeout(runSequence, 12000); 
 
-            }, 3000); // Partikel bubar dan istirahat 3 detik
+            }, 3000); 
         }
 
         function init() {
@@ -422,7 +421,7 @@
             height = canvas.height = window.innerHeight;
             
             const isMobile = width < 600;
-            PARTICLE_COUNT = isMobile ? 900 : 1800; // Jumlah pasukan partikel ditambah
+            PARTICLE_COUNT = isMobile ? 900 : 1800; 
             
             particles = [];
             for (let i = 0; i < PARTICLE_COUNT; i++) {
@@ -436,7 +435,6 @@
         }
 
         function animate() {
-            // Efek ekor partikel
             ctx.fillStyle = 'rgba(0, 0, 0, 0.12)'; 
             ctx.fillRect(0, 0, width, height);
 
